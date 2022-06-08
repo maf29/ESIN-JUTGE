@@ -1,0 +1,6 @@
+SI hi ha camí de 0 a 1
+SI hi ha camí de 0 a 2
+NO hi ha camí de 1 a 0
+SI hi ha camí de 1 a 2
+NO hi ha camí de 2 a 0
+NO hi ha camí de 2 a 1

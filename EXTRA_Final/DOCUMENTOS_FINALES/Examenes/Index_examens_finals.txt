@@ -1,0 +1,49 @@
+####################################################
+2019-2020 (Final_19-20)
+-----------------------
+	Ex.1: TST. comencen(const string &pref, vctr<string> &out)
+Teoria.	Ex.2: Dibuix d'un BST, AVL, min-heap, arbre general
+	Ex.3: ABIN. bool abin<T> quasi_max-heap() const
+Teoria.	Ex.4: Kruskal pas a pas. Diff entre Kurskal, Prim i Dijk
+	Ex.5: HASH. dicc operator- (const dicc &d) const 
+####################################################
+2018-2019 (Final_18-19)
+-----------------------
+	Ex.1: TST. int prefix(const string &s) const
+	Ex.2: MergeSort. void ordena(vector<int> &v)
+	Ex.3: HASH. bool operator== (const dicc &d) const
+	Ex.4: CUAPRIO. void insereix(float p)--> en MaxHeap
+	Ex.5: GRAF,list adj. int cami_mes_curt(const arest &a, ini, fi) 
+####################################################
+2017-2018 (Reava_17-18)
+----------------------
+Teoria.	Ex.1: COSTOS
+Teoria.	Ex.2: MaxHeap i TST. dibuix d'insersions
+	Ex.3: HASH. void unassign(const string &var)
+	Ex.4: GRAF, matriu adj. bool graf<T> es_torneig()
+	Ex.5: AVL. Construeix avl a partir d'un vector
+####################################################
+2017-2018 (Final_17-18)
+-----------------------
+Teoria.	Ex.1: COSTOS
+Teoria.	Ex.2: MaxHeap. dibuixa i llistar claus
+	Ex.3: HASH. void assign(const string &, const expr &)
+Teoria.	Ex.4: GRAF, dijkstra
+	Ex.5: BST. void elimina(const T &x)
+####################################################
+2013-2014 (Final_13-14)
+-----------------------
+Teoria.	Ex.1: COSTOS
+Teoria.	Ex.2: COSTOS a algoritmes
+	Ex.3: HASH. void rehash()-> duplica i recoloca
+Act.2	Ex.4: LLISTA. llista reparteix()
+	Ex.5: BST. bool es_bst() const en ::iterator's
+####################################################
+2011-2012 (Final_11-12)
+-----------------------
+Teoria.	Ex.1: Costos. Inserir claus a un BST, AVL, hash
+	Ex.2: HASH. void elimina(const Clau &k)
+	Ex.3: BST. Abin<int> recupera_bst(const list<int> $lst) en ::iterator's
+	Ex.4: TST. bool existeix (const Clau &k) const
+
+

@@ -1,0 +1,148 @@
+Merge ==> Θ(n log 𝑛)
+	1. Divide la sequencia entrada en dos mitades
+	2. Ordenar cada mitad de forma recuriva
+	3. Fusionar dos mitades ordenadas
+	
+	
+	void merge(vector<elem>& T, int l, int m, int u) {
+		vector<elem> B(u - l + 1);
+		int i = l, j = m + 1, k = 0;
+		while (i <= m and j <= u) {
+			// If the element of the lower part of the sequence is smaller than the
+			// upper one then add the element of the lower part to the sequence
+			if (T[i] <= T[j]) B[k++] = T[i++];
+			// Otherwise add the element of the upper part to the sequence
+			else B[k++] = T[j++];
+		}
+		
+		// Add to the new sequence B the elements that hasn’t been added yet
+		while (i <= m) B[k++] = T[i++];
+		while (j <= u) B[k++] = T[j++];
+		// Overwrites the part of the sequence that has been processed
+		for (k = 0; k <= u - l; ++k) T[l + k] = B[k];
+	}
+
+	// Initial call: mergesort(T, 0, T.size() - 1)
+	void mergesort(vector<elem>& T, int l, int u) {
+		if (l < u) {
+			int m = (l + u) / 2;
+			mergesort(T, l, m); // Sort the half downwards positions
+			mergesort(T, m + 1, u); // Sort the half upwards positions
+			merge(T, l, m, u); // Merge the two sorted sequences
+		}
+	}
+
+-----------------------------------------------------------------------------------------------
+Quicksort ==> Ω(n log 𝑛), pitjor Ο(𝑛^2) y de media Θ(𝑛 log 𝑛)
+	1. Escoge un elemento de la lista que hará de pivot (evitar que sea el primer elemento)
+	2. Hacer 2 grupos
+	3. Hace dos llamadas recursivas dividiendo la lista en dos (mayores y menores)
+	4. Repite el proceso por cada sublista.
+	5. Devuelve las dos sublistas ordenadas seguidas.
+	
+	
+	int partition(vector<elem>& T, int l, int u) {
+		int x = T[l]; // In this case we take the first element as pivot
+		int i = l - 1;
+		int j = u + 1;
+		while (1) {
+			while (x < T[--j]);
+			while (T[++i] < x);
+			if (i >= j) return j;
+			// If there is an element in the lower and upper part that is not
+			// in the correct part, exchange them.
+			swap(T[i], T[j]);
+		}
+	}
+	// Initial call: quicksort(T, 0, T.size() - 1);
+	void quicksort(vector<elem>& T, int l, int u) {
+		if (l < u) {
+			int q = partition(T, l, u);
+			// Elements smaller than the pivot
+			quicksort(T, l, q);
+			// Elements bigger than the pivot
+			quicksort(T, q + 1, u);
+		}
+	}
+	
+------------------------------------------------------------------------------------------------
+RadixSort ==> Ω(l*n) siendo n el nuemro de elementos y l es el numero de bits en cada elemento
+
+	// A utility function to get maximum value in arr[] 
+	int getMax(int arr[], int size) 
+	{ 
+	    int max = arr[0]; 
+	    for (int i = 1; i < size; i++) 
+		if (arr[i] > max) 
+		    max = arr[i]; 
+	    return max; 
+	} 
+	  
+	void CountingSort(int arr[], int size, int div) 
+	{ 
+	    int output[size]; 
+	    int count[10] = {0}; 
+	  
+	    for (int i = 0; i < size; i++) 
+		count[ (arr[i]/div)%10 ]++; 
+	  
+	    for (int i = 1; i < 10; i++) 
+		count[i] += count[i - 1]; 
+	  
+	    for (int i = size - 1; i >= 0; i--) 
+	    { 
+		output[count[ (arr[i]/div)%10 ] - 1] = arr[i]; 
+		count[ (arr[i]/div)%10 ]--; 
+	    } 
+	  
+	    for (int i = 0; i < size; i++) 
+		arr[i] = output[i]; 
+	} 
+	  
+	 
+	void RadixSort(int arr[], int size) 
+	{ 
+	    int m = getMax(arr, size); 
+	    for (int div = 1; m/div > 0; div *= 10) 
+		CountingSort(arr, size, div); 
+	}
+
+------------------------------------------------------------------------------------------------
+
+BST y AVL → crea : Ω(1); consulta, inserir y eliminar: Θ(log 𝑛)
+	BST puede que en algun caso sea lineal
+
+TST  (izq - central - dret) → crea : Ω(1); consulta, inserir y eliminar: Θ(l*log s) --> l = longitud media de la clau, s = simbolo (valor) 
+
+Trie (primf - segg) → crea : Ω(1); consulta, inserir y eliminar: Θ(l*s) --> l = longitud media de la clau, s = simbolo (valor) 
+
+Hash → crea : Ω(n); consulta, inserir y eliminar: Θ(1) 
+
+------------------------------------------------------------------------------------------------
+Heapsort
+Ordena un conjunto de 𝑛 elementos construyendo un heap de 𝑛 elementos, para posteriormente
+extraerlos uno por uno del heap. El coste es Θ(𝑛 log 𝑛).
+------------------------------------------------------------------------------------------------
+*Grafos*
+Matriz de adyacencia: son muy costosas en espacio. Si |𝑉(𝐺)| = 𝑛 → su coste en espacio para
+representar un grafo es de Θ(𝑛^2).
+
+Listas de adyacencia: tiene un coste Θ(𝑛 + 𝑚) dónde 𝑛 = |𝑉| y 𝑚 = |𝐸|. Como norma general
+usar esta implementación
+
+	* DFS (Depth-First-Search) → Θ(𝑛 + 𝑚)
+	
+		void DFS_REC(const Graph& graph, Visited& vis, int u) {
+			vis[u] = true;
+			for (int v : graph[u])
+			if (not vis[v])
+			DFS_REC(graph, vis, v);
+		}
+		void DFS(const Graph& graph) {
+			Visited vis(graph.size(), false);
+			for (int u = 0; u < graph.size(); u++)
+			if (not vis[u])
+			DFS_REC(graph, vis, u);
+		}
+	
+------------------------------------------------------------------------------------------------
